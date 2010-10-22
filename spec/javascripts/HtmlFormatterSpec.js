@@ -19,4 +19,9 @@ describe("HtmlFormatter", function() {
     jsonArray[0].c={}
     expect(HtmlFormatter.formatObject(jsonObject)).toEqual("<table><thead><tr><th>a</th><th>b</th></tr></thead><tbody><tr><td>a</td><td>b</td></tr></tbody></table>")
   })
+
+  it("should allow you to register aliases for property names in header", function() {
+    HtmlFormatter.registerDisplayNames({a: "alias for a"})
+    expect(HtmlFormatter.formatObject(jsonObject)).toEqual("<table><thead><tr><th>alias for a</th><th>b</th></tr></thead><tbody><tr><td>a</td><td>b</td></tr></tbody></table>")
+  })
 })
