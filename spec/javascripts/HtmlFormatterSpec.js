@@ -35,4 +35,5 @@ describe("HtmlFormatter", function() {
     })
     expect(formatter.formatObject(jsonObject)).toEqual("<table><thead><tr><th>a</th><th>b</th></tr></thead><tbody><tr><td class=\"test\">a</td><td>b</td></tr></tbody></table>")
   })
+
 })
