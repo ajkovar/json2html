@@ -16,7 +16,7 @@ describe("HtmlFormatter", function() {
     expect(formatter.formatObject(jsonObject)).toEqual("<table><thead><tr><th>a</th><th>b</th></tr></thead><tbody><tr><td>a</td><td>b</td></tr></tbody></table>")
   })
 
-  it("should ignore object properties", function() {
+  it("should ignore properties that are also objects", function() {
     jsonArray[0].c={}
     expect(formatter.formatObject(jsonObject)).toEqual("<table><thead><tr><th>a</th><th>b</th></tr></thead><tbody><tr><td>a</td><td>b</td></tr></tbody></table>")
   })
@@ -36,4 +36,18 @@ describe("HtmlFormatter", function() {
     expect(formatter.formatObject(jsonObject)).toEqual("<table><thead><tr><th>a</th><th>b</th></tr></thead><tbody><tr><td class=\"test\">a</td><td>b</td></tr></tbody></table>")
   })
 
+  it("should allow you to add hooks for each object", function() {
+    formatter.onObject(function(value, element) {
+      element.className="test"
+      return element
+    })
+    expect(formatter.formatObject(jsonObject)).toEqual("<table><thead><tr><th>a</th><th>b</th></tr></thead><tbody><tr class=\"test\"><td>a</td><td>b</td></tr></tbody></table>")
+  })
+
+  it("should allow you object prevent objects from being rendered", function() {
+    formatter.onObject(function(value, element) {
+      return false
+    })
+    expect(formatter.formatObject(jsonObject)).toEqual("<table><thead><tr><th>a</th><th>b</th></tr></thead></table>")
+  })
 })
