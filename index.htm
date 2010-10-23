@@ -2,14 +2,25 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
 <head> 
-<script src="lib/logger.js"></script> 
 <script src="lib/jquery-1.4.2.js"></script> 
-<script src="lib/init.js"></script> 
+<script src="lib/formatter/html.js"></script> 
 <link rel="stylesheet" type="text/css" href="style/styles.css">
-<title>Sandbox</title> 
+<title>json2html example</title> 
 <meta http-equiv="Content-type" content="text/html; charset=utf-8" /> 
+<script>
+  var data = [
+    {propA:"value1", propB: "value2"},
+    {propA:"value3", propB: "value4"}
+  ]
+
+  $(document).ready(function(){
+    var formatter = new HtmlFormatter();
+    formatter.registerDisplayNames({propA:"Property A", propB:"Property B"})
+    $(".displayDiv").html(formatter.formatArray(data))
+  })
+</script>
 </head> 
 <body> 
-  <p>Hello</p> 
+  <div class='displayDiv'></div> 
 </body> 
 </html>
