@@ -1,7 +1,43 @@
 
-# YourLib
+# json2html
 
-Description
+A simple library for converting json and arrays of json objects to an html table.  Ideal for quickly prototyping things.  Especially handy for working with APIs that will hand you back arrays of json.  The only assumption is that the objects in the arrays all have identical structures (which is the case for many APIs, github's for instance). 
+
+Here's an example:
+
+    data = [
+      {propA:"value1", propB: "value2"},
+      {propA:"value3", propB: "value4"}
+    ]
+    var formatter = HtmlFormatter();
+    formatter.formatArray(data)
+
+Will generate the table:
+
+    <table>
+        <thead>
+                <tr>
+                        <th>propA</th><th>propB</th>
+                </tr>
+        </thead>
+        <tbody>
+                <tr>
+                        <td>value1</td><td>value2</td>
+                        <td>value3</td><td>value4</td>
+                </tr>
+        </tbody>
+    </table>
+
+You can register titles for the headers:
+
+    formatter.registerDisplayNames({propA:"Property A", propB:"Property B"})
+    
+Or add hooks to manipulate or not show certain data:
+
+    formatter.onProperty("propA", function(value, element){ element.className="fancyClass"; return element})
+    formatter.onObject(function(value, element){ return false; /*Don't show this row */})
+
+It will automatically ignore properties that can't be gracefully displayed as a string (objects, arrays, etc).
 
 ## License 
 
