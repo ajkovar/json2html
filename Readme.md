@@ -5,12 +5,12 @@ A simple library for converting json and arrays of json objects to an html table
 
 Here's an example:
 
-    data = [
+    var data = [
       {propA:"value1", propB: "value2"},
       {propA:"value3", propB: "value4"}
     ]
     var formatter = HtmlFormatter();
-    formatter.formatArray(data)
+    var htmlString = formatter.formatArray(data)
 
 Will generate the table:
 
