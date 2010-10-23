@@ -9,7 +9,7 @@ Here's an example:
       {propA:"value1", propB: "value2"},
       {propA:"value3", propB: "value4"}
     ]
-    var formatter = HtmlFormatter();
+    var formatter = new HtmlFormatter();
     var htmlString = formatter.formatArray(data)
 
 Will generate the table:
