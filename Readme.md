@@ -6,8 +6,8 @@ A simple library for converting json and arrays of json objects to an html table
 Here's an example:
 
     var data = [
-      {propA:"value1", propB: "value2"},
-      {propA:"value3", propB: "value4"}
+      {propA:"value1", propB: "value2", propC: "value3"},
+      {propA:"value4", propB: "value5", propC: "value6"}
     ]
     var formatter = new HtmlFormatter();
     var htmlString = formatter.formatArray(data)
@@ -17,13 +17,13 @@ Will generate the table:
     <table>
         <thead>
                 <tr>
-                        <th>propA</th><th>propB</th>
+                        <th>propA</th><th>propB</th><th>propC</th>
                 </tr>
         </thead>
         <tbody>
                 <tr>
-                        <td>value1</td><td>value2</td>
-                        <td>value3</td><td>value4</td>
+                        <td>value1</td><td>value2</td><td>value3</td>
+                        <td>value4</td><td>value5</td><td>value6</td>
                 </tr>
         </tbody>
     </table>
@@ -34,10 +34,21 @@ You can register titles for the headers:
     
 Or add hooks to manipulate or not show certain data:
 
+    // add class to the generated TD:
     formatter.onProperty("propA", function(value, element){ element.className="fancyClass"; return element})
-    formatter.onObject(function(value, element){ return false; /*Don't show this row */})
+    // show something completely arbirary instead:
+    formatter.onProperty("propA", function(value, element){ element.className="fancyClass"; return element})
+    // don't show certain objects
+    formatter.onObject(function(value, element){ if(value.propA==="value1") return false; })
 
-It will automatically ignore properties that can't be gracefully displayed as a string (objects, arrays, etc).
+Additionally, you can specify which fields to display and in which order:
+
+    // only show property C and property A in the order given:
+    formatter.display(["propC", "propA"])
+
+If you don't explicitly tell it which fields to display,  it will automatically ignore properties that can't be gracefully displayed as a string (objects, arrays, etc).
+
+Right now it has a dependancy on jQuery, which may later be removed.  So far this has only been tested in chrome and firefox.  Included in the repo is an example in index.htm.
 
 ## License 
 
