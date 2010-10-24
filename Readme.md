@@ -36,8 +36,10 @@ Or add hooks to manipulate or not show certain data:
 
     // add class to the generated TD:
     formatter.onProperty("propA", function(value, element){ element.className="fancyClass"; return element})
+
     // show something completely arbirary instead:
-    formatter.onProperty("propA", function(value, element){ element.className="fancyClass"; return element})
+    formatter.onProperty("propA", function(value, element){ return $('<td>').html("meow")})
+
     // don't show certain objects
     formatter.onObject(function(value, element){ if(value.propA==="value1") return false; })
 
