@@ -50,4 +50,10 @@ describe("HtmlFormatter", function() {
     })
     expect(formatter.formatObject(jsonObject)).toEqual("<table><thead><tr><th>a</th><th>b</th></tr></thead></table>")
   })
+
+  it("should allow you to specify which properties to display and in which order", function() {
+    jsonObject.c="c"
+    formatter.display(["c", "a"])
+    expect(formatter.formatObject(jsonObject)).toEqual("<table><thead><tr><th>c</th><th>a</th></tr></thead><tbody><tr><td>c</td><td>a</td></tr></tbody></table>")
+  })
 })
