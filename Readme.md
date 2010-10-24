@@ -52,7 +52,7 @@ If you don't explicitly tell it which fields to display,  it will automatically 
 
 Right now it has a dependancy on jQuery, which may later be removed. So far this has only been tested in chrome and firefox.  
 
-Included in the repo is an example in index.htm.
+Included in the repo is an example in index.htm that uses jquery tablesorter to give you some sortable data.
 
 ## License 
 

@@ -3,8 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
 <head> 
 <script src="lib/jquery-1.4.2.js"></script> 
-<script src="lib/formatter/html.js"></script> 
-<link rel="stylesheet" type="text/css" href="style/styles.css">
+<script src="lib/HtmlFormatter.js"></script> 
+<script src="lib/example/tablesorter.min.js"></script> 
+<link rel="stylesheet" type="text/css" href="style/style.css">
 <title>json2html example</title> 
 <meta http-equiv="Content-type" content="text/html; charset=utf-8" /> 
 <script>
@@ -16,7 +17,8 @@
   $(document).ready(function(){
     var formatter = new HtmlFormatter();
     formatter.registerDisplayNames({propA:"Property A", propB:"Property B"})
-    $(".displayDiv").html(formatter.formatArray(data))
+    var tableData = $(formatter.formatArray(data)).attr("class", "tablesorter").tablesorter()
+    $(".displayDiv").html(tableData)
   })
 </script>
 </head> 
