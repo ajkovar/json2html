@@ -50,7 +50,9 @@ Additionally, you can specify which fields to display and in which order:
 
 If you don't explicitly tell it which fields to display,  it will automatically ignore properties that can't be gracefully displayed as a string (objects, arrays, etc).
 
-Right now it has a dependancy on jQuery, which may later be removed.  So far this has only been tested in chrome and firefox.  Included in the repo is an example in index.htm.
+Right now it has a dependancy on jQuery, which may later be removed. So far this has only been tested in chrome and firefox.  
+
+Included in the repo is an example in index.htm.
 
 ## License 
 
